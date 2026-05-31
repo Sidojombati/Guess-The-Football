@@ -1,10 +1,10 @@
 // --- GAME DATA (EDIT THIS FOR YOUR IMAGES) ---
 const rounds = [
-    { noBall: "round1_noball.jpg", withBall: "round1_withball.jpg", row: 3, col: 5 },
-    { noBall: "round2_noball.jpg", withBall: "round2_withball.jpg", row: 6, col: 2 },
-    { noBall: "round3_noball.jpg", withBall: "round3_withball.jpg", row: 4, col: 7 },
-    { noBall: "round4_noball.jpg", withBall: "round4_withball.jpg", row: 2, col: 4 },
-    { noBall: "round5_noball.jpg", withBall: "round5_withball.jpg", row: 7, col: 3 }
+    { noBall: "round1_noball.jpg", withBall: "round1_withball.jpg", row: 5, col: 8 },
+    { noBall: "round2_noball.jpg", withBall: "round2_withball.jpg", row: 3, col: 7 },
+    { noBall: "round3_noball.jpg", withBall: "round3_withball.jpg", row: 3, col: 8 },
+    { noBall: "round4_noball.jpg", withBall: "round4_withball.jpg", row: 7, col: 3 },
+    { noBall: "round5_noball.jpg", withBall: "round5_withball.jpg", row: 1, col: 7 }
 ];
 
 let currentRound = 0;
