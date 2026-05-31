@@ -1,10 +1,45 @@
-// Set the correct answer (row, column)
-let correctRow = 3;
-let correctCol = 5;
+// --- GAME DATA (EDIT THIS FOR YOUR IMAGES) ---
+const rounds = [
+    {
+        noBall: "round1_noball.jpg",
+        withBall: "round1_withball.jpg",
+        row: 5,
+        col: 8
+    },
+    {
+        noBall: "round2_noball.jpg",
+        withBall: "round2_withball.jpg",
+        row: 6,
+        col: 2
+    },
+    {
+        noBall: "round3_noball.jpg",
+        withBall: "round3_withball.jpg",
+        row: 4,
+        col: 7
+    },
+    {
+        noBall: "round4_noball.jpg",
+        withBall: "round4_withball.jpg",
+        row: 2,
+        col: 4
+    },
+    {
+        noBall: "round5_noball.jpg",
+        withBall: "round5_withball.jpg",
+        row: 7,
+        col: 3
+    }
+];
+
+let currentRound = 0;
+let score = 0;
 
 const grid = document.getElementById("grid");
 const result = document.getElementById("result");
 const nextBtn = document.getElementById("next-round");
+const img = document.getElementById("match-image");
+const roundTitle = document.getElementById("round-title");
 
 // Build 8×8 grid
 for (let r = 1; r <= 8; r++) {
@@ -19,25 +54,67 @@ for (let r = 1; r <= 8; r++) {
     }
 }
 
-function handleGuess(row, col) {
-    if (row === correctRow && col === correctCol) {
-        result.textContent = "Correct! 🎉";
-        result.style.color = "green";
-    } else {
-        result.textContent = "Wrong! ❌";
-        result.style.color = "red";
-    }
+function loadRound() {
+    const r = rounds[currentRound];
+    img.src = r.noBall;
+    roundTitle.textContent = `Round ${currentRound + 1} of 5`;
 
-    nextBtn.style.display = "block";
-}
-
-nextBtn.addEventListener("click", () => {
     result.textContent = "";
     nextBtn.style.display = "none";
 
-    // Example: change the correct answer for next round
-    correctRow = Math.floor(Math.random() * 8) + 1;
-    correctCol = Math.floor(Math.random() * 8) + 1;
+    // Clear grid colours
+    document.querySelectorAll(".grid-cell").forEach(cell => {
+        cell.classList.remove("correct", "wrong");
+    });
+}
 
-    // You can also change the image here if you want
+function handleGuess(row, col) {
+    const r = rounds[currentRound];
+
+    // Mark correct cell
+    document.querySelector(
+        `.grid-cell[data-row="${r.row}"][data-col="${r.col}"]`
+    ).classList.add("correct");
+
+    // Mark wrong guess if needed
+    if (row !== r.row || col !== r.col) {
+        document.querySelector(
+            `.grid-cell[data-row="${row}"][data-col="${col}"]`
+        ).classList.add("wrong");
+
+        result.textContent = "Wrong! ❌";
+        result.style.color = "red";
+    } else {
+        result.textContent = "Correct! 🎉";
+        result.style.color = "green";
+        score++;
+    }
+
+    // Reveal the image with the ball
+    setTimeout(() => {
+        img.src = r.withBall;
+        nextBtn.style.display = "block";
+    }, 800);
+}
+
+nextBtn.addEventListener("click", () => {
+    currentRound++;
+
+    if (currentRound >= rounds.length) {
+        endGame();
+    } else {
+        loadRound();
+    }
 });
+
+function endGame() {
+    img.style.display = "none";
+    grid.style.display = "none";
+    nextBtn.style.display = "none";
+
+    result.textContent = `Game Over! Your score: ${score} / 5`;
+    result.style.color = "black";
+}
+
+// Start game
+loadRound();
