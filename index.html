@@ -8,17 +8,29 @@
 </head>
 <body>
 
-<h2>Spot the Ball</h2>
-<h3 id="round-title"></h3>
-
-<div id="game-container">
-    <img id="match-image" src="" alt="Football Match">
-    <div id="grid"></div>
+<!-- INTRO PAGE -->
+<div id="intro-screen">
+    <h1>Spot the Ball</h1>
+    <p>You'll see 5 football photos with the ball removed.</p>
+    <p>Tap the grid where you think the ball should be.</p>
+    <p>Confirm your selection, then the correct location will be revealed along with the real image.</p>
+    <button id="start-btn">Start Game</button>
 </div>
 
-<div id="result"></div>
+<!-- GAME PAGE -->
+<div id="game-screen" style="display:none;">
+    <h2 id="round-title"></h2>
 
-<button id="next-round" style="display:none;">Next Round</button>
+    <div id="game-container">
+        <img id="match-image" src="" alt="Football Match">
+        <div id="grid"></div>
+    </div>
+
+    <div id="result"></div>
+
+    <button id="confirm-btn" style="display:none;">Confirm Selection</button>
+    <button id="next-round" style="display:none;">Next Round</button>
+</div>
 
 <script src="script.js"></script>
 </body>

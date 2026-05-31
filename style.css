@@ -6,6 +6,11 @@ body {
     background: #f2f2f2;
 }
 
+#intro-screen {
+    max-width: 420px;
+    margin: auto;
+}
+
 #game-container {
     position: relative;
     width: 100%;
@@ -37,12 +42,16 @@ body {
     background: rgba(255,255,255,0.25);
 }
 
+.selected {
+    background: rgba(0, 150, 255, 0.4) !important;
+}
+
 .correct {
-    background: rgba(0,255,0,0.4) !important;
+    background: rgba(0,255,0,0.5) !important;
 }
 
 .wrong {
-    background: rgba(255,0,0,0.4) !important;
+    background: rgba(255,0,0,0.5) !important;
 }
 
 #result {
